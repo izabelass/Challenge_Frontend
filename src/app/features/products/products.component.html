@@ -1,1 +1,24 @@
-<p>products works!</p>
+<div class="container">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <label for="search">Search</label>
+    <input id="search" type="text" formControlName="search">
+    <button type="submit">Go</button>
+  </form>
+  <div *ngIf="products$ | async as products" class="card-wrapper">
+    <div *ngFor="let product of products" class="card-item">
+      <app-product-card [card]="{
+        id: product.id,
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        discountPercentage: product.discountPercentage,
+        rating: product.rating,
+        stock: product.stock,
+        brand: product.brand,
+        category: product.category,
+        thumbnail: product.thumbnail,
+        images: product.images
+      }"></app-product-card>
+    </div>
+  </div>
+</div>
